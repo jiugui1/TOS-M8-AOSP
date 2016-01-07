@@ -1,0 +1,58 @@
+# makefile template
+
+# ro.product.brand
+DEVICE_BRAND := HTC
+# ro.product.model
+DEVICE_NAME := M8
+# ro.build.display.id
+SW_VERSION := cm_m8-userdebug 4.4.4 KTU84Q 29daeacbc3 test-keys
+
+# packages need to be decompiled
+DECOMPILE_PACKAGES := framework.jar services.jar android.policy.jar framework2.jar telephony-common.jar ext.jar
+
+# custom resource package
+CUSTOM_RESOURCE_PACKAGE := none
+
+# extra packages need to be decompiled
+#EXTRA_DECOMPILE_PACKAGES := TOS:qgallery.apk TARGET:Camera2.apk
+
+# unpack boot.img tool
+# support relative path & variables
+# e.g. $(PORT_TOOLS)/unpackbootimg.sh
+UNPACK_BOOTIMG_TOOL := default
+
+# pack boot.img too
+# support relative path & variables
+# e.g. $(PORT_TOOLS)/mkbootimg.sh
+PACK_BOOTIMG_TOOL := default
+
+# device list that is suitable for. these devices will be added to the ota updater-script assertion statement
+SUITABLE_DEVICES :=
+
+# apktool/smali/baksmali selection
+# support relative path & variables
+# e.g. $(PORT_TOOLS)/apktool/apktool.jar
+APKTOOL_JAR := default
+SMALI_JAR := default
+BAKSMALI_JAR := default
+
+BOARD_SAVED_FILES:= lib/libwebviewchromium.so bin/bootanimation bin/shutdownanimation media/bootanimation.zip media/shutdownanimation.zip 
+
+# aapt tool
+# support relative path & variables
+# e.g. $(PORT_TOOLS)/android/aapt
+AAPT_PATH := default
+
+##############################################################################
+# The value is used to config the device's resolution.
+# such as 720x1280, 1080x1920.
+#-----------------------------------------------------------------------------
+#RESOLUTION := 1080x1920
+
+##############################################################################
+# The value is used to config whether to append device assertions to update_script
+# such as true, false.
+#-----------------------------------------------------------------------------
+RECOVERY_DEVICE_ASSERT=flash
+
+include $(PORT_BUILD)/main.mk

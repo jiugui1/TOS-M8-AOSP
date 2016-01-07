@@ -1,0 +1,6 @@
+#!/system/bin/sh
+# Optimize entropy
+
+
+busybox sysctl -e -w kernel.random.read_wakeup_threshold=1024;
+busybox sysctl -e -w kernel.random.write_wakeup_threshold=2048;

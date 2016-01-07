@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configurations>
+<app name="Android_Kernel">
+  <item type="boolean" name="support_dynamic_switch">false</item>
+</app>
+<app name="Android_Networking">
+  <item type="integer" name="tethering_support_ipv6">0</item>
+</app>
+<app name="Android_Ril">
+  <item type="string" name="modemSolution"></item>
+</app>
+<app name="Camera">
+  <item type="boolean" name="has_two_microphone">true</item>
+</app>
+<app name="Dot_Matrix">
+  <item type="integer" name="call_timer_style">0</item>
+  <item type="boolean" name="remove_arrow_animations">false</item>
+  <item type="integer" name="support_cover_type">0</item>
+</app>
+<app name="DriveActivator">
+  <item type="integer" name="GoogleDriveStorageOffer">50</item>
+</app>
+<system>
+  <item type="string-array" name="htc_album_feature_diff">
+    <string>default:1</string>
+    <string>albumeffect_sequenceshot:1</string>
+    <string>albumeffect_objectremoval:1</string>
+    <string>albumeffect_alwayssmile:1</string>
+    <string>albumeffect_refocus:1</string>
+    <string>albumeffect_gifcreator:1</string>
+    <string>albumeffect_cutpaste:1</string>
+    <string>drawingboard:1</string>
+    <string>albumeffect_4seasons:1</string>
+    <string>albumeffect_foregrounder:1</string>
+    <string>albumeffect_3d_marco:1</string>
+    <string>albumeffect_enable:1</string>
+  </item>
+  <item type="boolean" name="support_beats_audio">false</item>
+  <item type="boolean" name="support_boomsound_effect">true</item>
+</system>
+</configurations>

@@ -1,0 +1,25 @@
+ro.qrom.build.version.snflag=ADRQRTOS
+ro.qrom.build.version.snver=10
+#need edit
+ro.qrom.build.version.day=160105
+ro.qrom.build.version.name=ADRQRTOS10_M
+ro.qrom.build.version.number=160105
+ro.qrom.build.version.type=M-0105
+#need edit
+ro.qrom.build.number=9
+ro.qrom.build.lc=A1B2C3000D4E5F6
+ro.qrom.build.lcid=99
+#need edit
+ro.qrom.build.date=Sat DEC 05 10:01:25 CST 2015
+ro.qrom.build.date.utc=1446014853
+ro.qrom.build.type=mod
+ro.qrom.beaconkey=0M000V5PH01B6QQD
+ro.qrom.product.device=M8
+ro.qrom.product.device.brand=HTC
+ro.qrom.build.brand=tos
+ro.qrom.build.os=4.4.4
+ro.qrom.otapath=/data/media/0
+qrom_disposeIcon_enable=1
+qrom_permission_enable=1
+ro.build.fingerprint=Android/qrom_hammerhead/hammerhead:4.4.4/KTU84P/210:user/dev-keys
+ro.product.device=m8,m8wl,m8wlv,m8vzw,m8whl,m8spr

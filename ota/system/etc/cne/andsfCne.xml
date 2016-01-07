@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright (c) 2012-2013 Qualcomm Technologies, Inc.  All Rights Reserved. Qualcomm Technologies Proprietary and Confidential.-->
+<AndsfPolicy>
+	<Man>KDDI</Man>
+	<Mod>ALO</Mod>
+	<Andsf>
+	    <Version>4.3</Version>
+		<Name>14SU_20140410</Name>
+		<Ext>
+			<WQE>
+				<InterfaceManager>
+					<BQE_Disabled>false</BQE_Disabled>
+					<ICD_Disabled>true</ICD_Disabled>
+					<!-- Default bqe thresholds where no apIds are specified. -->
+					<BQE_Thresholds Id="128">
+						<RadioTechnology Type="CDMA2000">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="EVDO_0">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="EVDO_A">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="EVDO_B">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="EDGE">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="UMTS">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="HSPA">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="HSDPA">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="GPRS">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="LTE">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="EHRPD">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="HSPAP">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+					</BQE_Thresholds>
+					<!-- Suggested use of bqethreshold with specific apIds -->
+					<BQE_Thresholds Id="1">
+						<apIds Type="SSID">
+							<apId>au_Wi-Fi</apId>
+							<apId>au_Wi-Fi2</apId>
+							<apId>Wi2</apId>
+							<apId>Wi2_club</apId>
+							<apId>Wi2premium_club</apId>
+							<apId>Wi2premium</apId>
+							<apId>wifi_square</apId>
+							<apId>UQ_Wi-Fi</apId>
+						</apIds>
+						<RadioTechnology Type="CDMA2000">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="EVDO_0">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="EVDO_A">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="EVDO_B">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="EDGE">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="UMTS">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="HSPA">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="HSDPA">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="GPRS">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="LTE">
+							<Threshold units="bps">540000</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="EHRPD">
+							<Threshold units="bps">300000</Threshold>
+						</RadioTechnology>
+						<RadioTechnology Type="HSPAP">
+							<Threshold units="bps">0</Threshold>
+						</RadioTechnology>
+					</BQE_Thresholds>
+					<Authentication>
+						<MaxAuthTime>86400</MaxAuthTime>
+						<IcdBanRetest>3</IcdBanRetest>
+						<AuthApps>
+						</AuthApps>
+					</Authentication>
+					<ICD config-type="disabled">
+					</ICD>
+				</InterfaceManager>
+			</WQE>
+			<CQE>
+				<!-- Default node for CQE_Thresholds element -->
+				<CQE_Thresholds Id ="128">
+					<!-- RSSI threshold from which all values greather than it is considered as good for wlan to be -->
+					<!-- a candidate for interface selection -->
+					<RSSIAddThreshold units="dbm">-99</RSSIAddThreshold>
+					<!-- RSSI threshold from which all values lesser than it is considered as bad for wlan to be -->
+					<!-- a candidate for interface selection -->
+					<RSSIDropThreshold units="dbm">-99</RSSIDropThreshold>
+					<!-- RSSI threshold from which to select linear model to compute CQE metric -->
+					<RSSIModelThreshold units="dbm">-99</RSSIModelThreshold>
+					<!-- Interval over whcih RSSI values are averaged -->
+					<RSSIAveragingInterval units="secs">100</RSSIAveragingInterval>
+					<!-- RSSI threshold below which MAC hysteresis timer is not started -->
+					<RSSIMacTimerThreshold units="dbm">-99</RSSIMacTimerThreshold>
+					<!-- Periodic timer to evaluate CQE parameters including RSSI and MAC stats -->
+					<!-- Setting CQETimer to zero disables the CQE -->
+					<CQETimer units="secs">0</CQETimer>
+					<!-- Time for which CQE is not reevaluted after it was declared bad due to MAC stats -->
+					<MACHysteresisTimer units="secs">20</MACHysteresisTimer>
+					<!-- Alpha to compute RSSI averaging based on IIR filtering mechanism -->
+					<MACStatsAveragingAlpha>0.3</MACStatsAveragingAlpha>
+					<!-- The threshold indicating the number of frames below which no valid CQE estimation can't be done -->
+					<FrameCntThreshold units="frames">2</FrameCntThreshold>
+					<!-- The threshold that ultimately decides the wlan is good or bad based on the combined MAC parameters -->
+					<!-- such as retry, multi-retry, fail and  ack fail metric -->
+					<!-- when average RSSI is greater than RSSIModelThreshold -->
+					<MACMibThreshold2a>0.35</MACMibThreshold2a>
+					<!-- The weightage that given to retry metric in computation of CQE -->
+					<!-- when average RSSI is greater than RSSIModelThreshold -->
+					<RetryMetricWeight2a>0.2061</RetryMetricWeight2a>
+					<!-- The weightage that given to multi-retry metric in computation of CQE -->
+					<!-- when average RSSI is greater than RSSIModelThreshold -->
+					<MultiRetryMetricWeight2a>0.1984</MultiRetryMetricWeight2a>
+					<!-- The threshold that ultimately decides the wlan is good or bad based on the combined MAC parameters -->
+					<!-- such as retry, multi-retry, fail and  ack fail metric -->
+					<!-- when average RSSI is less than or equal to RSSIModelThreshold -->
+					<MACMibThreshold2b>0.4</MACMibThreshold2b>
+					<!-- The weightage that given to retry metric in computation of CQE -->
+					<!-- when average RSSI is less than or equal to RSSIModelThreshold -->
+					<RetryMetricWeight2b>0.4318</RetryMetricWeight2b>
+					<!-- The weightage that given to multi-retry metric in computation of CQE -->
+					<!-- when average RSSI is less than or equal to RSSIModelThreshold -->
+					<MultiRetryMetricWeight2b>0.4156</MultiRetryMetricWeight2b>
+				</CQE_Thresholds>
+				<!-- The next element is for reference only to show how to set up CQE thresholds for a list of specific apids -->
+				<CQE_Thresholds Id ="1">
+					<apIds Type="SSID">
+					 <apId>au_Wi-Fi</apId>
+					 <apId>au_Wi-Fi2</apId>
+					 <apId>Wi2</apId>
+					 <apId>Wi2_club</apId>
+					 <apId>Wi2premium_club</apId>
+					 <apId>Wi2premium</apId>
+					 <apId>wifi_square</apId>
+					 <apId>UQ_Wi-Fi</apId>
+					</apIds>
+					<RSSIAddThreshold units="dbm">-71</RSSIAddThreshold>
+					<RSSIDropThreshold units="dbm">-76</RSSIDropThreshold>
+					<RSSIModelThreshold units="dbm">-85</RSSIModelThreshold>
+					<RSSIAveragingInterval units="secs">2</RSSIAveragingInterval>
+					<RSSIMacTimerThreshold units="dbm">-76</RSSIMacTimerThreshold>
+					<CQETimer units="secs">1</CQETimer>
+					<MACHysteresisTimer units="secs">30</MACHysteresisTimer>
+					<MACStatsAveragingAlpha>0.1</MACStatsAveragingAlpha>
+					<FrameCntThreshold units="frames">25</FrameCntThreshold>
+					<MACMibThreshold2a>0.25</MACMibThreshold2a>
+					<RetryMetricWeight2a>0.1061</RetryMetricWeight2a>
+					<MultiRetryMetricWeight2a>0.0984</MultiRetryMetricWeight2a>
+					<MACMibThreshold2b>0.45</MACMibThreshold2b>
+					<RetryMetricWeight2b>0.3072</RetryMetricWeight2b>
+					<MultiRetryMetricWeight2b>0.5156</MultiRetryMetricWeight2b>
+				</CQE_Thresholds>
+			</CQE>
+		</Ext>
+	</Andsf>
+</AndsfPolicy>

@@ -1,0 +1,63 @@
+#!/system/bin/sh 
+#Poject ERA init.d scipt by ZeroInfinity
+############################
+# Property of ZeroInfinity #
+#                          #
+# DO NOT STEAL!            #
+############################
+# I REPEAT, DO NOT STEAL!!!!
+#####################################################################
+
+#mount debug filesystem
+mount -t debugfs debugfs /sys/kernel/debug 
+
+#Mount system for alsa config
+mount -o rw,remount /system
+
+#Full Access To ALSA
+chmod 777 /dev/snd/*;
+chown 0:0 /dev/snd/*;
+
+#Using ALSA Drivers
+export AUDIODRIVER=alsa;
+setprop AUDIODRIVER alsa;
+setprop ro.sound.driver alsa;
+
+# alsa: suspend/wakeup ALSA devices
+echo "97era"
+
+case "$1" in
+hibernate|suspend)
+;;
+thaw|resume)
+aplay -d 1 /dev/zero
+;;
+*) exit $NA
+;;
+esac
+
+chmod 666 /dev/snd/*
+
+echo "alsa enabled."
+
+#Audio thread tweaks from Xperia Fidelity by WindowsX
+renice -20 `pidof mediaserver`;
+renice -20 `pidof admsrv`;
+renice -20 `pidof android.process.media`;
+ionice `pidof mediaserver` rt 0;
+ionice `pidof admsrv` rt 0;
+ionice `pidof android.process.media` rt 0;
+
+####################################################################
+############################
+# Property of ZeroInfinity #
+#                          #
+# DO NOT STEAL!            #
+############################
+# I REPEAT, DO NOT STEAL!!!!
+############################
+# Property of ZeroInfinity #
+#                          #
+# DO NOT STEAL!            #
+############################
+# I REPEAT, DO NOT STEAL!!!!

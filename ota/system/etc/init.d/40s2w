@@ -1,0 +1,5 @@
+#!/system/bin/sh
+
+insmod /system/lib/modules/s2w_mod.ko
+
+

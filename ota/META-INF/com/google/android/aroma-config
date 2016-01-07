@@ -1,0 +1,623 @@
+﻿theme("ics");
+ini_set("force_colorspace","rgba");
+ini_set("dp","6");
+
+ini_set("rom_name", "GPE Rom, Digitalhigh Edition");
+ini_set("rom_version", "1.0.0");
+ini_set("rom_author", "Digitalhigh");
+ini_set("rom_device", "HTC M8 VZW");
+
+setcolor("winbg", "#222");
+setcolor("winfg", "#fee");
+setcolor("textbg", "#222");
+setcolor("textfg", "#fee");
+setcolor("navbg", "#222");
+setcolor("navbg_g", "#222");
+setcolor("controlfg", "#fee");
+setcolor("controlbg", "#222");
+
+splash(
+3000, 
+"One2" 
+);
+
+fontresload( "0", "ttf/Roboto-Regular.ttf", "12" );
+fontresload( "1", "ttf/Roboto-Regular.ttf", "18" ); 
+
+viewbox(
+  "Welcome",
+    "\n\n\n\n\n"+
+    "           	You're about to flash\n<b>"+
+    ini_get("rom_name") + "</b> by <b> " + ini_get("rom_author") +  
+    "</b>\n\n\n"+
+    "  Version: <#080>" + ini_get("rom_version") + "</#>\n"+
+    "  Device: <#080>" + ini_get("rom_device") + "</#>\n\n\n"+
+    "Press Next to continue the installation...",
+  "icons/info"
+); 
+
+
+selectbox(
+  "Pre-Flash Options",
+  "Please select:",
+  "icons/personalize",
+  "wipe.prop",
+  
+  "Install without wiping user data","",0,
+  "Perform a full wipe","",1,
+  "Update only","",0
+);
+
+if prop("wipe.prop","selected.0") !="3" then
+##########################GPS################################
+selectbox(
+ "GPS Settings",
+ "Where do you live?:",
+ "icons/device",
+ "gps.prop",
+
+"No Custom GPS","Leave rom defaults",1,
+"Argentina","",0,
+"Asia","",0,
+"Australia","",0,
+"Austria","",0,
+"Brazil","",0,
+"Canada","",0,
+"Europe","",0,
+"Germany","",0,
+"Italy","",0,
+"North America","",0,
+"Russia","",0,
+"South America","",0,
+"United Kingdom","",0,
+"United States","",0
+);
+##################Launcher####################################
+selectbox(
+	"Launchers",
+	"Please Select which Launcher you want to use:",
+	"icons/apps",
+	"launch.prop",
+
+"Google Experience Launcher","GoogleHome with GoogleNow Integration",1,
+"Launcher2","Stock GPE Launcher from M7",0,
+"Apex Launcher","",0,
+"Nova Launcher","",0,
+"Xperia Launhcer","",0
+
+);
+##################Add Apps####################################
+checkbox(
+	"Add Apps",
+	"Please select which apps you want to add:",
+	"icons/apps",
+	"addapps.prop",
+
+"Active Display","",0,
+"Apollo Music Player","",0,
+"Chronus","Weather and clock widget",0,
+"Dolphin Browser","",0,
+"Dropbox","Cloud Storage",0,
+"Flash Player","",0,
+"GSAM Battery monitor","In-depth battery monitor",0,
+"Greenify","Better battery management for running apps",0,
+"I'm Sleeping","Set quiet hours when you want",0,
+"Inverted SMS/MMS","blacked out MMS app",0,
+"Stock SMS/MMS","Stock MMS app",0,
+"LMT","Pie/Gesture Controls",0,
+"MX Player","Does not work with ART enabled",0,
+"Rom Toolbox Lite","Root file explorer/terminal/App backup-Manager",0
+
+);
+
+##################Xposed and Modules####################################
+checkbox(
+	"Xposed-Modules",
+	"Xposed WILL break ART support:",
+	"icons/apps",
+	"xposed.prop",
+
+"Xposed Installer","Installer for Xposed Framework",1,
+"Gravity Box","Mod all things GPE",0,
+"Tinted Status Bar","Per app status bar tinting",0,
+"Youtube Ad-Away","Remove adds from youtube!",0,
+"Xposed AppOps","Brings back AppOps",0,
+"Verizon Roaming Fix","Force system to think it's not roaming",1
+
+);
+##################System Mods####################################
+selectbox(
+	"Sound Mods",
+	"Please select which sound mod you want to add:",
+	"icons/apps",
+	"smods.prop",
+
+"No additional Mod","Leave Stock, Use for Google Play Edition",1,
+"Project ERA v16.3","Full System-wide Audio",0,
+"Sound Explosion Mod By Doc3000","Best music mod",0
+);
+
+##################System Mods2####################################
+checkbox(
+	"System Mods",
+	"Please select which mods you want to add:",
+	"icons/apps",
+	"smods2.prop",
+	
+"Hacked Email/Exchange","Disabled pin security for exchange mail - Breaks ART",0,
+"Mother of All Ad-Blocking Script","Add hosts file to system",0
+
+);
+
+#####################Remove Gapps#################################
+checkbox(
+  "Remove Google Apps",
+  "Please select which Google Apps you want to remove:",
+  "icons/apps",
+  "googleremove.prop",
+
+  "Google Mail",          "",  0,
+  "Google Maps",          "",  0,
+  "Google News",          "",  1,
+  "Google Now (Search)",  "Do Not Remove if using Google Launcher",  0,
+  "Google Plus",      "",  0,
+  "Google Hangouts",      "",  0,
+  "Google TTS",           "",  0,
+  "Google Chrome",        "",  0,
+  "Google Music",         "",  1,
+  "Google Drive",         "",  0,
+  "Google YouTube",      "",  0,
+  "Google Books",         "",  1,
+  "Google Magazine",      "",  1,
+  "Google Keep",          "",  0,
+  "Google Play Games",    "",  1,
+  "Google Play Movies",   "",  1,
+  "Google Wallet",		  "",  0,
+  "Quick Office",		  "",  0,
+  "Face Lock","",0,
+  "Cloud Print","",0,
+  "Google Gallery","",0
+ );
+
+############################DPI Selection#############################
+selectbox(
+  "Display",
+  "Note:Changing DPI can cause DotView not to function!",
+  "icons/personalize",
+  "dpi.prop",
+  
+  "480","Stock",1,
+  "440","",0,
+  "420","",0,
+  "400","",0,
+  "370","",0,
+  "340","",0,
+  "300","",0,
+  "200","",0
+);
+
+############################Fonts#################################
+selectbox(
+ "Fonts",
+ "Which Font do you want to INSTALL?",
+ "@personalize",
+ "font.prop",
+ 
+ "No Font","Leave stock font",1,
+ "Bauhaus ITC","",0,
+ "Arvo","",0,
+ "Avenir","",0,
+ "Bauhaus","",0,
+ "Biko","",0,
+ "Brixton","",0,
+ "Calibri","",0,
+ "Cartoonist Hand All upper Caps","",0,
+ "Cartoonist Hand","",0,
+ "Caviar Dreams","",0,
+ "China Cat","",0,
+ "Choco Cooky","",0,
+ "Cocon","",0,
+ "Consolas","",0,
+ "Continuum","",0,
+ "Covington SC Exp","",0,
+ "Economica","",0,
+ "Engebrechtre RG","",0,
+ "Essence Sans","",0,
+ "Exo","",0,
+ "Expletus Sans","",0,
+ "Florence Sans All Capital","",0,
+ "Futura LT","",0,
+ "Helvetica (HP)","",0,
+ "Helvetica neue(HP)","",0,
+ "Josefin Sans","",0,
+ "Josefin Slab","",0,
+ "Klinic","",0,
+ "Komika","",0,
+ "Kontrapunkt","",0,
+ "Lato","",0,
+ "Lucida Calligraphy","",0,
+ "Merriweather Sans","",0,
+ "Monofonto","",0,
+ "Myriad Pro","",0,
+ "Neuropol","",0,
+ "Nokia Pure","Nokia System font",0,
+ "Open Sans Condensed Light","",0,
+ "Open Sans Light","",0,
+ "Raleway","",0,
+ "Roboto Bold","",0,
+ "Roboto Condensed Bold","",0,
+ "Roboto Slab bold","",0,
+ "Rosario","",0,
+ "Rosemary","Samsung",0,
+ "Sansation","",0,
+ "Signika","",0,
+ "Sony Sketch","",0,
+ "Sony Xperia","Xperia Stock font",0,
+ "Tertre","",0,
+ "Times New Roman","",0,
+ "Titillium Web","",0,
+ "Trebuchet MS","",0,
+ "Typograph Pro","",0,
+ "Ubuntu","Ubuntu System font",0,
+ "Webly Sleek UIF","",0,
+ "Zekton","",0
+ );
+if prop("font.prop","selected.0")=="2" then
+splash(3000, "@1");
+endif;
+if prop("font.prop","selected.0")=="3" then
+splash(3000, "@2");
+endif;
+if prop("font.prop","selected.0")=="4" then
+splash(3000, "@3");
+endif;
+if prop("font.prop","selected.0")=="5" then
+splash(3000, "@4");
+endif;
+if prop("font.prop","selected.0")=="6" then
+splash(3000, "@5");
+endif;
+if prop("font.prop","selected.0")=="7" then
+splash(3000, "@6");
+endif;
+if prop("font.prop","selected.0")=="8" then
+splash(3000, "@7");
+endif; 
+if prop("font.prop","selected.0")=="9" then
+splash(3000, "@8");
+endif;
+if prop("font.prop","selected.0")=="10" then
+splash(3000, "@9");
+endif;
+if prop("font.prop","selected.0")=="11" then
+splash(3000, "@10");
+endif;
+if prop("font.prop","selected.0")=="12" then
+splash(3000, "@11");
+endif;
+if prop("font.prop","selected.0")=="13" then
+splash(3000, "@12");
+endif;
+if prop("font.prop","selected.0")=="14" then
+splash(3000, "@13");
+endif;
+if prop("font.prop","selected.0")=="15" then
+splash(3000, "@14");
+endif;
+if prop("font.prop","selected.0")=="16" then
+splash(3000, "@15");
+endif;
+if prop("font.prop","selected.0")=="17" then
+splash(3000, "@16");
+endif;
+if prop("font.prop","selected.0")=="18" then
+splash(3000, "@17");
+endif;
+if prop("font.prop","selected.0")=="19" then
+splash(3000, "@18");
+endif;
+if prop("font.prop","selected.0")=="20" then
+splash(3000, "@19");
+endif;
+if prop("font.prop","selected.0")=="21" then
+splash(3000, "@20");
+endif;
+if prop("font.prop","selected.0")=="22" then
+splash(3000, "@21");
+endif;
+if prop("font.prop","selected.0")=="23" then
+splash(3000, "@22");
+endif;
+if prop("font.prop","selected.0")=="24" then
+splash(3000, "@23");
+endif;
+if prop("font.prop","selected.0")=="25" then
+splash(3000, "@24");
+endif;
+if prop("font.prop","selected.0")=="26" then
+splash(3000, "@25");
+endif;
+if prop("font.prop","selected.0")=="27" then
+splash(3000, "@26");
+endif;
+if prop("font.prop","selected.0")=="28" then
+splash(3000, "@27");
+endif;
+if prop("font.prop","selected.0")=="29" then
+splash(3000, "@28");
+endif;
+if prop("font.prop","selected.0")=="30" then
+splash(3000, "@29");
+endif;
+if prop("font.prop","selected.0")=="31" then
+splash(3000, "@30");
+endif;
+if prop("font.prop","selected.0")=="32" then
+splash(3000, "@31");
+endif;
+if prop("font.prop","selected.0")=="33" then
+splash(3000, "@32");
+endif;
+if prop("font.prop","selected.0")=="34" then
+splash(3000, "@33");
+endif;
+if prop("font.prop","selected.0")=="35" then
+splash(3000, "@34");
+endif;
+if prop("font.prop","selected.0")=="36" then
+splash(3000, "@35");
+endif;
+if prop("font.prop","selected.0")=="37" then
+splash(3000, "@36");
+endif;
+if prop("font.prop","selected.0")=="38" then
+splash(3000, "@37");
+endif;
+if prop("font.prop","selected.0")=="39" then
+splash(3000, "@38");
+endif;
+if prop("font.prop","selected.0")=="40" then
+splash(3000, "@39");
+endif;
+if prop("font.prop","selected.0")=="41" then
+splash(3000, "@40");
+endif;
+if prop("font.prop","selected.0")=="42" then
+splash(3000, "@41");
+endif;
+if prop("font.prop","selected.0")=="43" then
+splash(3000, "@42");
+endif;
+if prop("font.prop","selected.0")=="44" then
+splash(3000, "@43");
+endif;
+if prop("font.prop","selected.0")=="45" then
+splash(3000, "@45");
+endif;
+if prop("font.prop","selected.0")=="46" then
+splash(3000, "@46");
+endif;
+if prop("font.prop","selected.0")=="47" then
+splash(3000, "@47");
+endif;
+if prop("font.prop","selected.0")=="48" then
+splash(3000, "@48");
+endif;
+if prop("font.prop","selected.0")=="49" then
+splash(3000, "@49");
+endif;
+if prop("font.prop","selected.0")=="50" then
+splash(3000, "@50");
+endif;
+if prop("font.prop","selected.0")=="51" then
+splash(3000, "@51");
+endif;
+if prop("font.prop","selected.0")=="52" then
+splash(3000, "@52");
+endif;
+if prop("font.prop","selected.0")=="53" then
+splash(3000, "@53");
+endif;
+if prop("font.prop","selected.0")=="54" then
+splash(3000, "@54");
+endif;
+if prop("font.prop","selected.0")=="55" then
+splash(3000, "@55");
+endif;
+if prop("font.prop","selected.0")=="56" then
+splash(3000, "@56");
+endif;
+if prop("font.prop","selected.0")=="57" then
+splash(3000, "@57");
+endif;
+if prop("font.prop","selected.0")=="58" then
+splash(3000, "@58");
+endif;
+############################Themes############################
+selectbox(
+  "Themes",
+  "Do you want to install a different Theme??",
+  "icons/personalize",
+  "theme.prop",
+  
+  "Leave SkyDragon Theme","Xperia-ish, Comes with rom",1,
+  "Install Stock GPE Theme","Install GPE default icons and boot animation",0
+);
+############################Kernel Selection############################
+selectbox(
+  "Kernel",
+  "Do you want to install a different kernel??",
+  "icons/personalize",
+  "kernel.prop",
+  
+  "SkyDragon Kernel","V-1.0.2",1,
+  "ElementalX Kernel","V-1.0.0",0,
+  "Stock Kernel","",0
+);
+############################ElementalX############################
+if prop("kernel.prop","selected.0")=="2" then
+selectbox(
+  "CPU Settings","","","cpu.prop",
+
+  "Adjust CPU frequencies","",2,
+  "Yes","Overclocking/underclocking options",0,
+  "No","Stock frequencies",1,
+
+  "Undervolting","Lowers voltage for lowest frequency. Undervolting may cause instability",2,
+  "Stock Voltage","",1,
+  "Undervolt -15mV","",0,
+  "Undervolt -30mV","",0,
+  "Undervolt -45mV","",0,
+
+  "Select thermal throttling","",2,
+  "Performance","(best performance)",1,
+  "Stock","(cooler)",0
+);
+
+if file_getprop("/tmp/aroma/cpu.prop","selected.1") == "1"
+then
+
+selectbox(
+  "Maximum CPU Frequency","<b>Select maximum CPU frequency.</b>\n","@info","freq.prop",
+  "1728MHz","",0,
+  "1958MHz","",0,
+  "2265MHz","",0,
+  "2458MHz","",0,
+  "2573MHz","",0,
+  "2650MHz","",0,
+  "2726MHz","",0,
+  "2803MHz","",0
+);
+
+endif;
+
+selectbox(
+  "GPU Settings","","","gpu.prop",
+
+  "Select maximum GPU frequency","",2,
+  "578Mhz","(stock)",1,
+  "462Mhz","(underclocked)",0,
+  "389MHz","(underclocked)",0,
+
+  "Select GPU governor","",2,
+  "Stock","",1,
+  "Simple-ondemand","(more aggressive)",0
+);
+
+selectbox(
+  "Wake Gestures","<b>Customize Sweep2wake and DoubleTap2wake</b>\n","@info","wg.prop",
+  "Stock","Do not modify HTC Motion Launch Gestures",0,
+  "Remove motion requirement","Use launch gestures without having to move phone",1,
+  "Traditional S2W/DT2W","S2W/DT2W wake screen only",0
+);
+
+if file_getprop("/tmp/aroma/wg.prop","selected.0") == "2" || file_getprop("/tmp/aroma/wg.prop","selected.0") == "3"
+then
+checkbox(
+  "Wake Gestures","<b>Select the gestures you would like to use</b>","","gest.prop",
+  
+  "Available Gestures:","",2,
+  "Sweep right","",1,
+  "Sweep left","",1,
+  "Sweep up","",1,
+  "Sweep down","",1,
+  "Double tap","",1,
+
+  "Other Options","",2,
+  "Vibrate on wake","enable haptic feedback on successful gesture",1,
+  "Pocket Detection","prevent accidental wakes (experimental)",1,
+  "Volume buttons launch camera in landscape","",1
+);
+endif;
+
+selectbox(
+  "Sweep2Sleep","<b>Sweep across navbar area to put phone to sleep</b>","","s2s.prop",
+  "Disable Sweep2Sleep","",0,
+  "Sweep right","",0,
+  "Sweep left","(default)",1,
+  "Sweep left or right","",0
+);
+
+checkbox(
+  "Other settings","<b>Select the mods you want to install</b>","@personalize","mods.prop",
+  "Enable USB fastcharge","",0,
+  "Disable fsync","Faster fileystem performance, but risk of data loss",0,
+  "Disable max screen off frequency","",0,
+  "Reduce button vibration","",0,
+  "Enable gboost","Enhanced gaming performance",1,
+  "Disable magnetic cover sensor","",0
+);
+endif;
+
+######################################################
+endif;
+######################################################
+#If selected update only, just restore settings from system
+if prop("wipe.prop","selected.0") == "3" then
+    pleasewait("Reading configurations...");
+    setvar("rest_status", resexec("scripts/restore.sh"));
+    if (getvar("rest_status") != "0") then
+	  alert(
+	      "Error",
+	      "Some files from previous configuration are missing\nPlease perform standard installation",
+	      "@alert"
+	  );
+	  back("1");
+    endif;
+endif;
+
+menubox(
+  "GP Rom, Digitalhigh Edition",
+  "Ready to install",
+  "@info",
+  "menu.prop",
+  "Install GPE DH Edition","","@install",
+  "Abort installation","","@default"
+);
+
+if prop("menu.prop","selected")=="2"
+then
+  exit("");
+endif;
+
+setvar("retstatus",
+install(
+  "Installing",
+  "Installing " + ini_get("rom_name") + " " + ini_get("rom_version") + 
+  "...\nPlease wait until it's finished...",
+  "@install")
+);
+
+
+#Save installation config
+resexec("scripts/save.sh");
+
+ini_set("text_next", "Finish");
+
+if getvar("retstatus")=="0" then
+  viewbox(
+   "Installation Completed",
+  "<#080>Congratulations!!</#>\n\n"+
+  ini_get("rom_name") + " " + ini_get("rom_version") + " has been installed successfully.\n\n"+
+  "Tap Finish, and Reboot your phone.\n\nThanks.",
+  "@info"
+);
+if
+  confirm(
+      "Reboot",
+      "Reboot Now?",
+      "icons/info",
+      "Yes",
+      "No"
+  )=="yes"
+then
+  reboot("onfinish");
+endif;
+else
+   viewbox("Installation Failed","\n\nInstaller Status: "+ getvar("retstatus"),"@alert");
+endif;
+
+
+
+
+

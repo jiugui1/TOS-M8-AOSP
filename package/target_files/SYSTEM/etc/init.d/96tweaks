@@ -1,0 +1,82 @@
+#!/system/bin/sh
+
+#Clean Caches & improve app loading times
+rm -r /cache/*.apk
+rm -r /cache/*.tmp
+rm -r /data/dalvik-cache/*.apk
+rm -r /data/dalvik-cache/*.tmp	
+echo "Cache Cleanup Complete";
+
+#Other Misc tweaks
+mount -t debugfs none /sys/kernel/debug
+echo NO_NORMALIZED_SLEEPER > /sys/kernel/debug/sched_features
+
+#Scheduler Tweak
+echo "fiops" > /sys/block/mmcblk0/queue/scheduler
+echo "fiops" > /sys/block/mmcblk1/queue/scheduler
+
+MMC=`ls -d /sys/block/mmc*`;
+for i in $MMC;
+do
+echo "0" > $i/queue/iostats;
+echo 0 > $i/queue/rotational;
+echo "1" > $i/queue/rq_affinity;
+echo 1024 > $i/queue/nr_requests;
+echo "1024" > $i/queue/read_ahead_kb;
+done;
+echo "1024" > sys/devices/virtual/bdi/179:0/read_ahead_kb 
+
+#Battery Tweaks
+echo "500" > /proc/sys/vm/dirty_expire_centisecs
+echo "3000" > /proc/sys/vm/dirty_writeback_centisecs
+
+#!/system/bin/sh
+#Tweaks & Optimizations 
+sysrw
+
+###################################Fstrim#######################################
+FS_LOGFILE=/data/fstrim.log
+
+echo "fstrim started at $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $FS_LOGFILE;
+
+fstrim -v /cache | tee -a $FS_LOGFILE;
+fstrim -v /data | tee -a $FS_LOGFILE;
+fstrim -v /system | tee -a $FS_LOGFILE
+
+#echo "fstrim finished at $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $FS_LOGFILE;
+
+########################### Fix permissions###########################################
+
+
+#echo "Setting permissions"
+		echo "Setting /app & /framework permissions"
+        for file in /system/app/* /system/framework/* /data/app/*; do
+                chmod 644 $file
+        done
+        
+        echo "Setting init.d permissions"
+        chmod 755 /system/etc/init.d
+        
+        for file in /system/etc/init.d/*; do
+        echo "    setting permissions (755) for $file"
+                chmod 755 $file
+        done
+#echo " ~ Permissions fixed ~ "
+
+###########################################Umount debug filesystem#########################
+umount /sys/kernel/debug   
+#echo " ~ Debug unmounted ~ "
+###########################################Media Server Kill ##############################
+killall -9 android.process.media
+killall -9 mediaserver
+#echo " ~ Media server killed~ "
+############################################Flashlight######################################
+chmod 666 /sys/class/leds/flashlight/brightness
+###########################################Run sysctl  ####################################
+sync
+sysctl -p
+sync 
+#echo " ~ sysctl ran ~ "
+##########################################yell all is done#################################
+#echo "Tweaks Applied!"
+
